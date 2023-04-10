@@ -29,18 +29,18 @@ def main(
     with TemporaryDirectory(prefix="tchecker_") as tmp_dir: 
         tmp_path = Path(tmp_dir).absolute()
         copytree(target, tmp_path, symlinks=True)
-        joern_out = subprocess.check_output(
-            [joern_path, tmp_path], 
-            cwd=tk_path,
-            stderr=subprocess.STDOUT, 
-        )
-        vprint('✔️ PHP-JOERN Output: ', 1); vprint(joern_out.decode(), 2)
         csfix_out = subprocess.check_output(
             [csfix_path, 'fix', tmp_path], 
             cwd=tk_path,
             stderr=subprocess.STDOUT, 
         )
         vprint('✔️ PHP-CS-FIX Output: ', 1); vprint(csfix_out.decode(), 2)
+        joern_out = subprocess.check_output(
+            [joern_path, tmp_path], 
+            cwd=tk_path,
+            stderr=subprocess.STDOUT, 
+        )
+        vprint('✔️ PHP-JOERN Output: ', 1); vprint(joern_out.decode(), 2)
         with open(os.path.join(tk_path, 'database.json'), '+w') as f: f.write('{}') 
         with open(os.path.join(tk_path, 'installed.json'), '+w') as f: f.write('[]')
         try: tchecker_out = subprocess.check_output(

@@ -35,16 +35,18 @@ $ sudo apt-get install php7.0-cli php7.0-fpm php7.0-opcache
 We use the composer to install the `php-cs-fix`. Please following the instructions from the [getcomposer](https://getcomposer.org/download/). Again, we support the instructions for Ubuntu user. 
 
 ```bash 
-$ wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
+$ wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet 
 # Please ensure the path `/usr/local/bin/` in you $PATH. 
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
+Another option is to use `sudo apt-get install composer`, but it will install an outdated version.
+
 
 Then, you can use the composer to simply install the tool. 
 
 ```bash
 $ mkdir -p $HOME/php-cs-fixer
-$ composer require --working-dir=$HOME/php-cs-fixer friendsofphp/php-cs-fixer
+$ composer require --working-dir=$HOME/php-cs-fixer
 ```
 
 ### 1.4 Install phpjoern
