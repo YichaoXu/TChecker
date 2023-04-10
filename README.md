@@ -2,7 +2,7 @@
 
 TChecker is a static taint analysis tool for PHP applications. The key idea in TChecker is to iteratively construct call graph and precisely perform inter-procedural taint analysis. TChecker found 18 new vulnerabilities and two CVEs (CVE-2022-35212, CVE-2022-35213) were assigned.
 
-The author of the TChecker is [Luo Changhua](chluo@cse.cuhk.edu.hk) from CUHK. This repository is a forked version of the TChecker with a python wrapper script for future research of JHU Seclab. 
+The author of the TChecker is [Luo Changhua](chluo@cse.cuhk.edu.hk) from CUHK. This repository is a forked version of the TChecker with a python wrapper script only for future research of JHU Seclab. We will not provide any suggestions about the usage, and we also make changes for the original codes. Please contact with the original author for usages details. 
 
 ## 1. Prerequisite
 
@@ -165,4 +165,5 @@ The output files include a database of the code structure, installed packages, n
 Users can also specify an optional --output flag to specify a different output directory for the generated files. The --help flag can be used to display usage instructions for the script.
 
 ## Author
+
 Please contact chluo@cse.cuhk.edu.hk for any questions.
