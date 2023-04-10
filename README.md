@@ -133,14 +133,13 @@ Here is an example usage of the tchecker wrapper script:
 ```bash 
 $ tchecker test.php --verbose
 ⚠️ Start TChecker for php file 'test.php'
-  ✔️ PHP-JOERN Output:
-    Parsing file /tmp/tchecker_1nneqmp8/test.php
-    Done.
   ✔️ PHP-CS-FIX Output:
     Loaded config default.
     Using cache file ".php_cs.cache".
-
     Fixed all files in 0.004 seconds, 12.000 MB memory used
+  ✔️ PHP-JOERN Output:
+    Parsing file /tmp/tchecker_1nneqmp8/test.php
+    Done.
   ✔️ TChecker Output:
     @
     []
@@ -160,9 +159,7 @@ database.json  installed.json  nodes.csv  rels.csv  result.txt
 
 In this example, the tchecker script is used to check a PHP file called test.php located in the current directory. The --verbose flag is used to provide more detailed output during the checking process.
 
-The script starts by running the PHP-JOERN tool to generate an Abstract Syntax Tree (AST) representation of the PHP code in test.php. It then runs the PHP-CS-FIXER tool to apply coding style fixes to the PHP code.
-
-Finally, the tchecker script runs a custom analysis on the PHP code and generates output files in a directory called tchecker.out.
+The script starts by running the PHP-CS-FIXER tool to apply coding style fixes to the PHP code. It then runs the PHP-JOERN tool to generate an Abstract Syntax Tree (AST) representation of the PHP code in `test.php`. Finally, the tchecker script runs a custom analysis on the PHP code and generates output files in a directory called `tchecker.out`.
 
 The output files include a database of the code structure, installed packages, node and relationship information, and a text file containing the results of the analysis.
 
