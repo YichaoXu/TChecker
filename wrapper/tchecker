@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+from pathlib import Path
+from tempfile import TemporaryDirectory
+import typer, subprocess, os, dotenv, shutil
+
+def copytree(src, dst, symlinks=False, ignore=None):
+    if not os.path.isdir(src): 
+        return shutil.copy2(src, dst)
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s): shutil.copytree(s, d, symlinks, ignore)
+        else: shutil.copy2(s, d)
+
+def main(
+    target: Path = typer.Argument(..., exists=True, help='path to cached files'), 
+    output: Path = typer.Option(Path('./tchecker.out'), help='path for outputs.'), 
+    verbose: bool = typer.Option(False, help="output more verbose information. ")
+) -> None: 
+    vprint = lambda msg, indent=0: print('\n'.join('  ' * indent+m for m in msg.splitlines())) if verbose else None
+    vprint(f"⚠️ Start TChecker for php file{'s under ' if target.is_dir() else ' '} '{target}'")
+    wrapper_dir = os.path.dirname(os.path.abspath(__file__))
+    if not dotenv.load_dotenv(f"{wrapper_dir}/wrapper.env"): 
+        raise FileNotFoundError(f"{wrapper_dir}/wrapper.env")
+    joern_path: str = os.path.join(os.getenv('PHPJOERN_HOME'), 'php2ast')
+    csfix_path: str = os.path.join(os.getenv('CS_FIXER_HOME'), 'php-cs-fixer')
+    tk_path: str = os.path.dirname(wrapper_dir)
+    if tk_path.endswith('/'): tk_path = tk_path[0:-1]
+    with TemporaryDirectory(prefix="tchecker_") as tmp_dir: 
+        tmp_path = Path(tmp_dir).absolute()
+        copytree(target, tmp_path, symlinks=True)
+        joern_out = subprocess.check_output(
+            [joern_path, tmp_path], 
+            cwd=tk_path,
+            stderr=subprocess.STDOUT, 
+        )
+        vprint('✔️ PHP-JOERN Output: ', 1); vprint(joern_out.decode(), 2)
+        csfix_out = subprocess.check_output(
+            [csfix_path, 'fix', tmp_path], 
+            cwd=tk_path,
+            stderr=subprocess.STDOUT, 
+        )
+        vprint('✔️ PHP-CS-FIX Output: ', 1); vprint(csfix_out.decode(), 2)
+        with open(os.path.join(tk_path, 'database.json'), '+w') as f: f.write('{}') 
+        with open(os.path.join(tk_path, 'installed.json'), '+w') as f: f.write('[]')
+        try: tchecker_out = subprocess.check_output(
+            ['java', '-Xmx8G', '-cp', f'{tk_path}/bin:{tk_path}/ApacheCommons/commons-cli-1.4/commons-cli-1.4.jar:{tk_path}/ApacheCommons/commons-cli-1.4/commons-cli-1.4-sources.jar:{tk_path}/ApacheCommons/commons-csv-1.8-bin/commons-csv-1.8/commons-csv-1.8.jar:{tk_path}/ApacheCommons/commons-csv-1.8-bin/commons-csv-1.8/commons-csv-1.8-sources.jar:{tk_path}/ApacheCommons/commons-lang3-3.10/commons-lang3-3.10.jar:{tk_path}/ApacheCommons/commons-lang3-3.10/commons-lang3-3.10-sources.jar:{tk_path}/ApacheCommons/json-20190722.jar', 'tools.php.ast2cpg.Main', '.'], 
+            cwd=tk_path,
+            stderr=subprocess.STDOUT, 
+            shell=False
+        )
+        except subprocess.CalledProcessError as e: 
+            print(e.output)
+            raise e
+        vprint('✔️ TChecker Output:', 1); vprint(tchecker_out.decode(), 2)
+        output.mkdir(parents=True, exist_ok=True)
+        for each_fname in ['database.json', 'installed.json', 'rels.csv', 'nodes.csv']: 
+            expected_path = os.path.join(tk_path, each_fname)
+            output_path = os.path.join(output, each_fname)
+            shutil.move(expected_path, output_path)
+        with open(os.path.join(output, 'result.txt'), '+w') as result: 
+            result.write(tchecker_out.decode())
+    vprint(f"⚠️ Outputs have already been generated under '{output}'")
+    return None
+
+if __name__ == "__main__": 
+    app = typer.Typer(add_completion=False)
+    app.command()(main)
+    app()
