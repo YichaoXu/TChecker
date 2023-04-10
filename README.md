@@ -2,7 +2,7 @@
 
 TChecker is a static taint analysis tool for PHP applications. The key idea in TChecker is to iteratively construct call graph and precisely perform inter-procedural taint analysis. TChecker found 18 new vulnerabilities and two CVEs (CVE-2022-35212, CVE-2022-35213) were assigned.
 
-The author of the TChecker is [Luo Changhua](chluo@cse.cuhk.edu.hk) from CUHK. This repository is a forked version of the TChecker with a python wrapper script only for future research of JHU Seclab. We will not provide any suggestions about the usage, and we also make changes for the original codes. Please contact with the original author for usages details. 
+**The author of the TChecker is [Luo Changhua](chluo@cse.cuhk.edu.hk) from CUHK. This repository is a forked version of the TChecker with a python wrapper script only for future research of JHU Seclab. We will not provide any suggestions about the usage, and we also make changes for the original codes. Please contact with the original author for usages details.**
 
 ## 1. Prerequisite
 
@@ -10,8 +10,7 @@ The author of the TChecker is [Luo Changhua](chluo@cse.cuhk.edu.hk) from CUHK. T
 
 ```bash 
 # JVM 1.8 
-#  1. You can use the SDKMAN for mac and linux OS
-#     see more information from the `https://sdkman.io`
+# You can use the SDKMAN for mac and linux OS. See more information from the `https://sdkman.io`
 $ curl -s "https://get.sdkman.io" | bash
 $ source "$HOME/.sdkman/bin/sdkman-init.sh"
 $ sdk version # show something like "sdkman 5.18.0" 
@@ -21,7 +20,7 @@ $ sdk default java 8.0.302-open
 
 ### 1.2 Install PHP7.0 
 
-Please following the steps from PHP official website, [install php7.0](https://prototype.php.net/versions/7.0/install/). We also provide you with a Ubuntu instructions for installation. 
+Please following the steps from PHP official website, [install php7.0](https://prototype.php.net/versions/7.0/install/). We also provide you with the instructions for Ubuntu OS.
 
 ```bash 
 # PHP 7.0.33 (10.Jan.2019)
@@ -32,17 +31,18 @@ $ sudo apt-get install php7.0-cli php7.0-fpm php7.0-opcache
 
 ### 1.3 Install php-cs-fix
 
-We use the composer to install the `php-cs-fix`. Please following the instructions from the [getcomposer](https://getcomposer.org/download/). Again, we support the instructions for Ubuntu user. 
+We use the composer to install the php-cs-fix. Please following the instructions from the [getcomposer](https://getcomposer.org/download/). Again, we support the instructions for the Ubuntu users.
 
 ```bash 
 $ wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet 
 # Please ensure the path `/usr/local/bin/` in you $PATH. 
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
-Another option is to use `sudo apt-get install composer`, but it will install an outdated version.
 
+Another option is to use sudo apt-get install composer, but it will install an outdated version.
 
-Then, you can use the composer to simply install the tool. 
+Then, you can use the composer to simply install the tool.
+
 
 ```bash
 $ mkdir -p $HOME/php-cs-fixer
@@ -53,7 +53,7 @@ $ composer require --working-dir=$HOME/php-cs-fixer
 
 Please exactly follow the instructions of PHPjoern [installation](https://github.com/malteskoruppa/phpjoern). For ubuntu user, use the following ones. 
 
-First, you need to compile PHP-AST at first. 
+First, you need to compile PHP-AST. 
 ```bash
 # PHP-AST Installation
 $ git clone https://github.com/nikic/php-ast
@@ -64,7 +64,9 @@ $ ./configure
 $ make
 $ sudo make install
 ```
+
 Then, you need to configure the `php.ini` file to add the `php-ast` as a plugin of the PHP interpreter. 
+
 ```bash
 # You need to first find out the path for php.ini 
 $ php --info | grep "php.ini" # OUTPUT: "Loaded Configuration File => /etc/php/7.0/cli/php.ini"
@@ -90,7 +92,7 @@ $ git clone https://github.com/YichaoXu/TChecker.git
 
 ### 2.2 Install wrapper 
 
-Ensure that you have python3 and pip3. Please also ensure the pip3 path are configure successfully. 
+Please ensure that you have python3 and pip3. Please also ensure that your pip3 path is configured correctly. 
 
 ```bash
 $ cd $HOME/TChecker/wrapper
