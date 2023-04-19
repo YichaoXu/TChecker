@@ -11,6 +11,8 @@ TChecker is a static taint analysis tool for PHP applications. The key idea in T
 ```bash 
 # JVM 1.8 
 # You can use the SDKMAN for mac and linux OS. See more information from the `https://sdkman.io`
+$ sudo apt-get update
+$ sudo apt-get install zip unzip wget
 $ curl -s "https://get.sdkman.io" | bash
 $ source "$HOME/.sdkman/bin/sdkman-init.sh"
 $ sdk version # show something like "sdkman 5.18.0" 
@@ -46,7 +48,7 @@ Then, you can use the composer to simply install the tool.
 
 ```bash
 $ mkdir -p $HOME/php-cs-fixer
-$ composer require --working-dir=$HOME/php-cs-fixer
+$ composer require --working-dir=$HOME/php-cs-fixer friendsofphp/php-cs-fixer:v3.16.0
 ```
 
 ### 1.4 Install phpjoern
