@@ -26,6 +26,7 @@ Please following the steps from PHP official website, [install php7.0](https://p
 
 ```bash 
 # PHP 7.0.33 (10.Jan.2019)
+$ sudo apt-get install software-properties-common
 $ sudo add-apt-repository ppa:ondrej/php
 $ sudo apt-get update
 $ sudo apt-get install php7.0-cli php7.0-fpm php7.0-opcache php7.0-dev
