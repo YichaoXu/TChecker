@@ -1,0 +1,7 @@
+setup.py
+tchecker
+tchecker_wrapper.egg-info/PKG-INFO
+tchecker_wrapper.egg-info/SOURCES.txt
+tchecker_wrapper.egg-info/dependency_links.txt
+tchecker_wrapper.egg-info/requires.txt
+tchecker_wrapper.egg-info/top_level.txt
