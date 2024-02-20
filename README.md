@@ -28,9 +28,10 @@ Please following the steps from PHP official website, [install php7.0](https://p
 
 ```bash 
 # PHP 7.0.33 (10.Jan.2019)
+$ sudo apt-get install software-properties-common
 $ sudo add-apt-repository ppa:ondrej/php
 $ sudo apt-get update
-$ sudo apt-get install php7.0-cli php7.0-fpm php7.0-opcache
+$ sudo apt-get install php7.0-cli php7.0-fpm php7.0-opcache php7.0-dev
 ```
 
 ### 1.3 Install php-cs-fix
@@ -50,7 +51,7 @@ Then, you can use the composer to simply install the tool.
 
 ```bash
 $ mkdir -p $HOME/php-cs-fixer
-$ composer require --working-dir=$HOME/php-cs-fixer friendsofphp/php-cs-fixer:v3.16.0
+$ composer require --working-dir=$HOME/php-cs-fixer friendsofphp/php-cs-fixer:v2.19.3
 ```
 
 ### 1.4 Install phpjoern
@@ -60,12 +61,14 @@ Please exactly follow the instructions of PHPjoern [installation](https://github
 First, you need to compile PHP-AST. 
 ```bash
 # PHP-AST Installation
+$ sudo apt-get install git
 $ git clone https://github.com/nikic/php-ast
 $ cd php-ast
 $ git checkout 701e853
 $ phpize
 $ ./configure
 $ make
+$ make test # verify that you actually compiled without issues
 $ sudo make install
 ```
 
@@ -101,6 +104,7 @@ Please ensure that you have python3 and pip3. Please also ensure that your pip3 
 
 ```bash
 $ cd $HOME/TChecker/wrapper
+$ sudo apt-get install python3 python3-pip
 $ pip3 install -e .
 ```
 
