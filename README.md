@@ -92,6 +92,7 @@ Please clone this tchecker repository. Notice again, this is a forked version of
 ```bash
 $ cd $HOME
 $ git clone https://github.com/YichaoXu/TChecker.git
+$ ./gradlew deploy -x test
 ```
 
 ### 2.2 Install wrapper 
