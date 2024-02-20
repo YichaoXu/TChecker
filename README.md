@@ -46,19 +46,18 @@ $ sudo mv composer.phar /usr/local/bin/composer
 
 Another option is to use sudo apt-get install composer, but it will install an outdated version.
 
-Then, you can use the composer to simply install the tool.
-
+Then, you can use the composer to simply install the tool. (PS: If you install the fixer in different path, please update [wrapper config file](./wrapper/wrapper.env))
 
 ```bash
-$ mkdir -p $HOME/php-cs-fixer
+$ mkdir -p $HOME/php-cs-fixer 
 $ composer require --working-dir=$HOME/php-cs-fixer friendsofphp/php-cs-fixer:v2.19.3
 ```
 
 ### 1.4 Install phpjoern
 
 Please exactly follow the instructions of PHPjoern [installation](https://github.com/malteskoruppa/phpjoern). For ubuntu user, use the following ones. 
+First, you need to compile PHP-AST.  (PS: If you install the phpjoern in different path, please update [wrapper config file](./wrapper/wrapper.env))
 
-First, you need to compile PHP-AST. 
 ```bash
 # PHP-AST Installation
 $ sudo apt-get install git
