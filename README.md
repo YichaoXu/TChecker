@@ -95,6 +95,7 @@ Please clone this tchecker repository. Notice again, this is a forked version of
 $ cd $HOME
 $ git clone https://github.com/YichaoXu/TChecker.git
 $ sudo apt install graphviz-dev
+$ pip install pygraphviz
 $ ./gradlew deploy -x test
 ```
 
