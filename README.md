@@ -8,6 +8,10 @@ TChecker is a static taint analysis tool for PHP applications. The key idea in T
 
 **ONLY php7.0 is supported. When compiling php-ast, only install phpize7.0 and do not install other versions, as this will cause incorrect header files to be included.**
 
+```
+# We used the Ubuntu22.04 for all following commands
+```
+
 ### 1.1 Install OpenJDK 1.8
 
 ```bash 
@@ -94,6 +98,7 @@ Please clone this tchecker repository. Notice again, this is a forked version of
 ```bash
 $ cd $HOME
 $ git clone https://github.com/YichaoXu/TChecker.git
+$ sudo apt-get install python3 python3-pip python3-is-python
 $ sudo apt install graphviz-dev
 $ pip install pygraphviz
 $ ./gradlew deploy -x test
@@ -105,7 +110,6 @@ Please ensure that you have python3 and pip3. Please also ensure that your pip3 
 
 ```bash
 $ cd $HOME/TChecker/wrapper
-$ sudo apt-get install python3 python3-pip
 $ pip3 install -e .
 ```
 
