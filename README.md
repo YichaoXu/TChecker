@@ -23,7 +23,7 @@ $ curl -s "https://get.sdkman.io" | bash
 $ source "$HOME/.sdkman/bin/sdkman-init.sh"
 $ sdk version # show something like "sdkman 5.18.0" 
 $ sdk install java 8.0.302-open # install java 8.0.302-open (OpenJDK)
-$ sdk default java 8.0.302-open 
+$ sdk default java 8.0.302-open
 ```
 
 ### 1.2 Install PHP7.0 
@@ -98,7 +98,8 @@ Please clone this tchecker repository. Notice again, this is a forked version of
 ```bash
 $ cd $HOME
 $ git clone https://github.com/YichaoXu/TChecker.git
-$ sudo apt-get install python3 python3-pip python3-is-python
+$ cd $HOME/TChecker
+$ sudo apt-get install python3 python3-pip python-is-python3
 $ sudo apt install graphviz-dev
 $ pip install pygraphviz
 $ ./gradlew deploy -x test
